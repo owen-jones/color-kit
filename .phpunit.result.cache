@@ -1,0 +1,1 @@
+{"version":1,"defects":{"OwenJones\\ColorKit\\Tests\\ColorKitTest::testContrastAccessible":3,"OwenJones\\ColorKit\\Tests\\ColorKitTest::testComputeTriad":3},"times":{"OwenJones\\ColorKit\\Tests\\ColorKitTest::testContrastAccessible":0.005,"OwenJones\\ColorKit\\Tests\\ColorKitTest::testComputeTriad":0.006}}
