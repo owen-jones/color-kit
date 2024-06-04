@@ -6,7 +6,11 @@ ColorKit is a PHP library for handling and manipulating colors. It provides util
 
 ## Installation
 
-todo: add installation instructions
+To install ColorKit, run:
+
+```bash
+composer require owen-jones/color-kit
+```
 
 ---
 
@@ -19,7 +23,7 @@ To get a color triad based on a base color:
 ```php
 require 'vendor/autoload.php';
 
-use YourNamespace\ColorKit;
+use OwenJones\ColorKit;
 
 $baseColor = '#3498db';
 $triad = ColorKit::getColorTriad($baseColor);
@@ -35,7 +39,7 @@ The first 2 colors are guaranteed to be accessible. The third is not.
 To check if the contrast between two colors is accessible (contrast ratio of at least 4.5):
 
 ```php
-use YourNamespace\ColorKit;
+use OwenJones\ColorKit;
 
 $color1 = '#3498db';
 $color2 = '#ffffff';
