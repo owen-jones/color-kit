@@ -2,6 +2,8 @@
   "name": "owen-jones/color-kit",
   "description": "A PHP library for manipulating accessible color combinations.",
   "type": "library",
+  "keywords": ["color", "accessibility", "contrast"],
+  "version": "1.0.0",
   "require": {
     "php": ">=8.1",
     "mexitek/phpcolors": "dev-master"
@@ -24,8 +26,8 @@
   },
   "authors": [
     {
-      "name": "Your Name",
-      "email": "your.email@example.com"
+      "name": "Owen Jones",
+      "email": "dev@whoisowenjones.com"
     }
   ],
   "license": "MIT",
