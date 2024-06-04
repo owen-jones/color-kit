@@ -60,7 +60,15 @@ class ColorKit
 
     while(!self::isContrastAccessible($colorBase, $color1, 5.0)){
       $c = new Color($color1);
-      $color1 = $c->darken(1);
+      $b = new Color($colorBase);
+      if($c->isLight()) {
+        $color1 = $c->lighten(1);
+        $colorBase = $b->darken(1);
+      }
+      else {
+        $color1 = $c->darken(1);
+        $colorBase = $b->lighten(1);
+      }
     }
 
     return [sprintf("#%s", $colorBase), sprintf("#%s", $color1), sprintf("#%s", $color2)];
