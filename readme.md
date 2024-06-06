@@ -23,7 +23,7 @@ To get a color triad based on a base color:
 ```php
 require 'vendor/autoload.php';
 
-use OwenJones\ColorKit;
+use OwenJones\ColorKit\ColorKit;
 
 $baseColor = '#3498db';
 $triad = ColorKit::getColorTriad($baseColor);
@@ -39,7 +39,7 @@ The first 2 colors are guaranteed to be accessible. The third is not.
 To check if the contrast between two colors is accessible (contrast ratio of at least 4.5):
 
 ```php
-use OwenJones\ColorKit;
+use OwenJones\ColorKit\ColorKit;
 
 $color1 = '#3498db';
 $color2 = '#ffffff';
