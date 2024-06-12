@@ -20,20 +20,24 @@ class ColorKitTest extends TestCase
   public function testComputeTriad()
   {
     $colors = ColorKit::getColorTriad('#23A8F2');
-    $this->assertTrue(ColorKit::isContrastAccessible($colors[0], $colors[1]));
+    $this->assertTrue(ColorKit::isContrastAccessible($colors[0], $colors[1]), "Failed with $colors[0] and $colors[1]");
+    $this->assertTrue(ColorKit::isContrastAccessible('#FFFFFF', $colors[1]), "Failed with $colors[1] over #FFFFFF. Full triad is $colors[0], $colors[1], $colors[2]");
 
     $colors = ColorKit::getColorTriad('#FF7162');
-    $this->assertTrue(ColorKit::isContrastAccessible($colors[0], $colors[1]));
+    $this->assertTrue(ColorKit::isContrastAccessible($colors[0], $colors[1]), "Failed with $colors[0] and $colors[1]");
+    $this->assertTrue(ColorKit::isContrastAccessible('#FFFFFF', $colors[1]), "Failed with $colors[1] over #FFFFFF. Full triad is $colors[0], $colors[1], $colors[2]");
 
     $colors = ColorKit::getColorTriad('#23D660');
-    $this->assertTrue(ColorKit::isContrastAccessible($colors[0], $colors[1]));
+    $this->assertTrue(ColorKit::isContrastAccessible($colors[0], $colors[1]), "Failed with $colors[0] and $colors[1]");
+    $this->assertTrue(ColorKit::isContrastAccessible('#FFFFFF', $colors[1]), "Failed with $colors[1] over #FFFFFF. Full triad is $colors[0], $colors[1], $colors[2]");
 
     $tests = 10000;
     for ($i = 0; $i < $tests; $i++) {
       $randomHex = dechex(rand(0x000000, 0xFFFFFF));
       $randomHex = str_pad($randomHex, 6, '0', STR_PAD_LEFT);
       $colors = ColorKit::getColorTriad($randomHex);
-      $this->assertTrue(ColorKit::isContrastAccessible($colors[0], $colors[1]));
+      $this->assertTrue(ColorKit::isContrastAccessible($colors[0], $colors[1]), "Failed with $colors[0] and $colors[1]");
+      $this->assertTrue(ColorKit::isContrastAccessible('#FFFFFF', $colors[1]), "Failed with $colors[1] over #FFFFFF. Full triad is $colors[0], $colors[1], $colors[2]");
     }
   }
 }

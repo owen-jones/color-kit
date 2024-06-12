@@ -58,20 +58,61 @@ class ColorKit
     $color1 = Color::hslToHex($a);
     $color2 = Color::hslToHex($b);
 
-    while(!self::isContrastAccessible($colorBase, $color1, 5.0)){
-      $c = new Color($color1);
+    $baseTextPair = self::findAccessiblePair($colorBase, $color1);
+    $colorBase = $baseTextPair[0];
+    $color1 = $baseTextPair[1];
+
+    $baseHighlightPair = self::findAccessiblePair($colorBase, $color2);
+    $colorBase = $baseHighlightPair[0];
+    $color2 = $baseHighlightPair[1];
+
+    // pick the darkest between color1 and color2
+    $c1 = new Color($color1);
+    $c2 = new Color($color2);
+    if($c1->isLight() && !$c2->isLight()) {
+      $color1 = $c2->getHex();
+      $color2 = $c1->getHex();
+    }
+
+    $color1 = self::makeAccessibleAgainstWhite($color1);
+
+    $baseTextPair = self::findAccessiblePair($colorBase, $color1);
+    $colorBase = $baseTextPair[0];
+    $color1 = $baseTextPair[1];
+
+    $color1 = self::makeAccessibleAgainstWhite($color1);
+
+    $baseTextPair = self::findAccessiblePair($colorBase, $color1);
+    $colorBase = $baseTextPair[0];
+    $color1 = $baseTextPair[1];
+
+    return [sprintf("#%s", $colorBase), sprintf("#%s", $color1), sprintf("#%s", $color2)];
+  }
+
+  private static function findAccessiblePair(string $colorBase, string $color) {
+    while(!self::isContrastAccessible($colorBase, $color, 5.0)){
+      $c = new Color($color);
       $b = new Color($colorBase);
       if($c->isLight()) {
-        $color1 = $c->lighten(1);
+        $color = $c->lighten(1);
         $colorBase = $b->darken(1);
       }
       else {
-        $color1 = $c->darken(1);
+        $color = $c->darken(1);
         $colorBase = $b->lighten(1);
       }
     }
 
-    return [sprintf("#%s", $colorBase), sprintf("#%s", $color1), sprintf("#%s", $color2)];
+    return [$colorBase, $color];
+  }
+
+  private static function makeAccessibleAgainstWhite(string $color) {
+    while(!self::isContrastAccessible("#FFFFFF", $color, 5.0)){
+      $c = new Color($color);
+      $color = $c->darken(1);
+    }
+
+    return $color;
   }
 
   private static function lumdiff($R1,$G1,$B1,$R2,$G2,$B2){
