@@ -3,7 +3,7 @@
   "description": "A PHP library for manipulating accessible color combinations.",
   "type": "library",
   "keywords": ["color", "accessibility", "contrast"],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "require": {
     "php": ">=8.1",
     "mexitek/phpcolors": "dev-master"
